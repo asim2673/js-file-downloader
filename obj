@@ -1,0 +1,86 @@
+1. Označimo kolonu B, pa stavimo kurzor između polja b i c i kad se pojavi dvostrijelica, sa lijevim dvoklikom miša 
+pomjera se razmak kolone B za svaki red tako da se vidi tekst bez obrzira na dužinu
+
+2. Vidimo u nazivu kolone "Broj radnika (sa vođom smjene)" da je unesen već broj radnika,
+ tako da ćemo poivjeriti već aktivni filer,
+kako bi vidjeli da li su sve možda neke vrijednosti isključene.
+Kako se da zaključiti iz tabele, svaki vođa smjene ima  redove  
+koji su vezani za dostupan broj radnika, tako da u fileru ako nisu, označimo sve vrijednosti.
+Sad imamo sve vrijednosti tj, sve radnike u ovoj koloni. 
+Potrebno je da ih prebrojimo, provjerimo i filter firmi, gdje vidimo da li su označene sve firme, tako da kad i tu označimo 
+sve firme dobijemo sve potrebne podatke
+
+Označimo kolonu "Broj radnika (sa vođom smjene)" i na dnu klknemo praznu ćeliju gdje će ispisati sumu radnika.
+Ima više načina za računanje, koristiću klik ikone sume, te kada dobijemo plavi okvir da odaberemo opseg, nakon odabira 
+kolone klikom na enter dobijemo sumu.
+Ili možemo odmah pisati formulu u ćeliju gdje želimo dobiti razultat
+=sum(E2:E743)  sa prvom i zadnjom ćelijom opsega kako bi dobili čitavu sumu
+
+Ukupno imamo 2326 radnika u mjesecu augustu
+
+
+3. Idemo u filter i prebrojimo broj firmi
+8 firmi
+
+4. Pivot tabela u sheedu radniKolona, gdje prema vođi kolone, odabran broj radnika, da izračuna sumu, pri čemu je 
+uključen filter da izbaci prazne ćelije i kolone bez radnika - dobijamo isti broj sume za sve radnike u mjesecu augustu 2326
+
+5. Kolona I - Radno vrijeme. Kliknemo na prvu praznu ćeliju.
+pišemo = pa označimo krajnje vrijeme istog reda minus označimo početno vrijeme istog reda i enter,
+rezultat je radno vrijeme reda (sa vođom kolone)
+-u lijevu donji ugao stavimo kursor i kad nam se pojavi plusić kliknemo dva puta 
+lijevim klikom da izračuna radno za čitvau kolonu
+
+6.Trebamo konvertovati format datuma u decimalni broj,  da dobijemo broj sati u danu,zatim polje radnog vremena množimo sa 24 sata, a 
+dobiveni broj množimo sa brojem radnika date kolone 
+pišemo :
+=(I3*24)*E2 // prvo se računa zagrada puta polje koje je sada dinamičko po broj radnika kolone
+kad dobijemo ratzultat, spustimo plusić do kraja tabele da se izračunaju svi redom redovi tj. radne kolone.
+
+ispod kolone smo sabrali sve radne sate i dobili iznos radnih sati od 15943.83.
+
+7.Kolona I, nađemo filter i označimo format radnog vremena sa svim nulama 00:00:00, što znači da nema radnog vrmena
+- ispisaće samo radne kolone, tj. redovi tabele koje nemaju radno vrijeme, tj. nisu radili u ovom mjesecu.
+funkciojom =COUNTBLANK(I2:I485) brojimo prazne redove tj. bez radnog vremena. 
+- mogli smo brojati i npr. početno radno vrijeme sa praznim ćelijama
+
+NAPRAVIO SAM I PIVOT TABELU GDJE SE DOBIJE ISTI REZULTAT. (NoTime)
+
+8. Najviši iznos iskopan je 206m, radi se o koloni 363/Vođa je Seid Nezirić/Firma Alle Plus
+AR kolona/opcija filtera nam omogućava da vidimo sve vrijednosti, ali i da maninpulišemo sa raznim operacijama.
+
+koristeći formulu za najveću vrijednost =MAX(AR2:AR742) dobijamo naveću iskopanu metražu. 
+
+9. Napravimo pivot tabelu unutar Sheet1.  Prvo odaberemo ćeliju tj. mjesto gdje će se kreirati tabela, zatim odaberemo,
+koje kolone tj. opseg ili dio tabele, ili tabelu želimo uključiti. 
+U ovom slučaju kolone H i I 
+Idemo na Umetni/Pivot table/ provjerimo da li sve kako želimo i ok.
+Povlačimo CustomerPermission u red,a City u sumu da se prebroji koliko "Ja" puta imam u gradovima:
+JA imamo JA - 105
+NEE - 42
+Praznih ćelija 102
+Ukupno 249
+
+Ako stavimo i CustomerPermission u filter onda biranjem Ja, NEE ili prazno, dobijamo sumiran broj filtera kao jedinstven podatak
+Pivot tabela se nalazi ispod glavne tabele
+
+8. Koristimo vlookup funkciju, 
+u Sheet2 u prvu praznu I ćeliju pišemo =VLOOKUP(B2,Sheet1!$B2:$I250,8,0)
+   -B2 je unikatni code za raspoznavanje tačnog reda, unosimo onda raspon koji se provjerava iz Sheeda1, tj 
+   - B kolona sa koja ima kod za svaki red koji je unikatan i koji se mora poklopiti sa kodom reda iz Sheeda2.
+  - tako da od B kolone do I kolone označimo sve ćelije tabele unutar pomenute formule. 
+  - u našem slučaju radi se o 8 kolona te dodamo broj kolona od početne do one u koju se trebaju ubaciti podaci.
+  - označimo false ili 0, da znamo ako je prazno kao neku potvrdu.
+  - stavili smo u opsegu znakove dolara tj. zaključali smo opseg, fixirali da nebi došlo do pucanja prilikom pretraživanja redova 
+  
+pritiskom na enter, dobijemo prvo polje i dvoklikom pustimo preostala da se učitaju. 
+
+
+
+
+
+
+
+
+ 
+
